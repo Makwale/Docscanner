@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DocumentScanner, DocumentScannerOptions } from '@ionic-native/document-scanner/ngx';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private documentScanner: DocumentScanner) {}
+
+  scanDocument(){
+    let opts: DocumentScannerOptions = {};
+    this.documentScanner.scanDoc(opts).then((res: string) => alert("Document scanned"))
+    .catch((error: any) => alert("Error happed"));
+  }
 
 }
